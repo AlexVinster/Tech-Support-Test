@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(9, 35px);
+            grid-template-rows: repeat(9, 35px);
+        }
+
+        .cell {
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            font-size: px;
+            border: 1px solid #999;
+        }
+
+        .container {
+            margin: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="board" id="board-1"></div>
+        <button onclick="validateSudoku(1)">Перевірити Валідність</button>
+        <div id="message-1" class="message"></div>
+    </div>
+
+    <div class="container">
+        <div class="board" id="board-2"></div>
+        <button onclick="validateSudoku(2)">Перевірити Валідність</button>
+        <div id="message-2" class="message"></div>
+    </div>
+
+    <div class="container">
+        <div class="board" id="board-3"></div>
+        <button onclick="validateSudoku(3)">Перевірити Валідність</button>
+        <div id="message-3" class="message"></div>
+    </div>
+
+    <div class="container">
+        <div class="board" id="board-4"></div>
+        <button onclick="validateSudoku(4)">Перевірити Валідність</button>
+        <div id="message-4" class="message"></div>
+    </div>
+
+    <div class="container">
+        <div class="board" id="board-5"></div>
+        <button onclick="validateSudoku(5)">Перевірити Валідність</button>
+        <div id="message-5" class="message"></div>
+    </div>
+
+    <script src="validator.js"></script>
+</body>
+
+</html>
