@@ -55,10 +55,15 @@ const boards = [
         [2, 8, 7, 4, 1, 9, 6, 3, 5],
         [3, 4, 5, 2, 8, 6, 1, 7, 9]
     ]
-  ];
-  
-  function validSolution(board) {
-  
+];
+
+function validSolution(board) {
+
+    function isUnique(arr) {
+        const uniqueElements = new Set(arr.filter(v => v !== 0));
+        return uniqueElements.size === arr.filter(v => v !== 0).length;
+    }
+
     // Check for 0 or -1 etc.
     for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
@@ -68,14 +73,14 @@ const boards = [
             }
         }
     }
-  
+
     // Check rows
     for (let row = 0; row < 9; row++) {
         if (!isUnique(board[row])) {
             return `Повторення у рядку ${row + 1}`;
         }
     }
-  
+
     // Check columns
     for (let col = 0; col < 9; col++) {
         const column = board.map(row => row[col]);
@@ -83,11 +88,26 @@ const boards = [
             return `Повторення у стовпці ${col + 1}`;
         }
     }
-  
+
+    // Check 3x3
+    for (let i = 0; i < 9; i += 3) {
+        for (let j = 0; j < 9; j += 3) {
+            const grid = [];
+            for (let x = 0; x < 3; x++) {
+                for (let y = 0; y < 3; y++) {
+                    grid.push(board[i + x][j + y]);
+                }
+            }
+            if (!isUnique(grid)) {
+                return `Повторення у блоці (${i + 1}-${i + 3}, ${j + 1}-${j + 3})`;
+            }
+        }
+    }
+
     return true;
-  }
-  
-  function renderBoard(board, elementId) {
+}
+
+function renderBoard(board, elementId) {
     const boardElement = document.getElementById(elementId);
     boardElement.innerHTML = '';
     for (let row = 0; row < 9; row++) {
@@ -98,9 +118,9 @@ const boards = [
             boardElement.appendChild(cell);
         }
     }
-  }
-  
-  function validateSudoku(boardIndex) {
+}
+
+function validateSudoku(boardIndex) {
     const messageElement = document.getElementById(`message-${boardIndex}`);
     const validationResult = validSolution(boards[boardIndex - 1]);
     if (validationResult === true) {
@@ -110,12 +130,11 @@ const boards = [
         messageElement.textContent = `Розв\'язок неправильний: ${validationResult}`;
         messageElement.style.color = 'red';
     }
-  }
-  
-  // boards output
-  renderBoard(boards[0], 'board-1');
-  renderBoard(boards[1], 'board-2');
-  renderBoard(boards[2], 'board-3');
-  renderBoard(boards[3], 'board-4');
-  renderBoard(boards[4], 'board-5');
-  
+}
+
+// boards output
+renderBoard(boards[0], 'board-1');
+renderBoard(boards[1], 'board-2');
+renderBoard(boards[2], 'board-3');
+renderBoard(boards[3], 'board-4');
+renderBoard(boards[4], 'board-5');
