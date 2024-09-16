@@ -89,21 +89,6 @@ function validSolution(board) {
         }
     }
 
-    // Check 3x3
-    for (let i = 0; i < 9; i += 3) {
-        for (let j = 0; j < 9; j += 3) {
-            const grid = [];
-            for (let x = 0; x < 3; x++) {
-                for (let y = 0; y < 3; y++) {
-                    grid.push(board[i + x][j + y]);
-                }
-            }
-            if (!isUnique(grid)) {
-                return `Повторення у блоці (${i + 1}-${i + 3}, ${j + 1}-${j + 3})`;
-            }
-        }
-    }
-
     return true;
 }
 
